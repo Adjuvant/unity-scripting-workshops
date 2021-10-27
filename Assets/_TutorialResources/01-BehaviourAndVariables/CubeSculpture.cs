@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CubeSculpture : MonoBehaviour
 {
-    public float speed = 25f;
+    private float speed = 2f;
     private readonly GameObject[] _objArr = new GameObject[5];
 
     private Vector3 _defPos = new Vector3(0, 0, 0);
@@ -29,10 +29,10 @@ public class CubeSculpture : MonoBehaviour
         _cRot += 0.05f;
         for (var i = 0; i < _objArr.Length; i++)
         {
-            var x = _defPos.x + Mathf.Sin(_cRot) * 2 * Time.deltaTime;
-            var y = _defPos.y + Mathf.Cos(_cRot) * 2 * Time.deltaTime;
+            var x = _defPos.x + Mathf.Sin(_cRot) * speed * Time.deltaTime;
+            var y = _defPos.y + Mathf.Cos(_cRot) * speed * Time.deltaTime;
             _objArr[i].transform.localPosition = new Vector3(x, y, _defPos.z);
-            _objArr[i].transform.Rotate((i + 1) * Time.deltaTime, (i + 1) * 2f * Time.deltaTime, (i + 1) * 3f * Time.deltaTime);
+            _objArr[i].transform.Rotate((i + 1) * Time.deltaTime, (i + 1) * speed * Time.deltaTime, (i + 1) * speed * 1.5f * Time.deltaTime);
         }
     }
 }

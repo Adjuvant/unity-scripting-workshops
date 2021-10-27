@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// This component plays an audio clip when a player tagged object enters it's 
+/// collider (the collider needs to be trigger type)
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class SoundInTrigger : MonoBehaviour
 {
@@ -14,11 +18,17 @@ public class SoundInTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Only react to player GOs
+        if (other.tag != "Player") return;
+        // Play the audio clip
         sound.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // Only react to player GOs
+        if (other.tag != "Player") return;
+        // Stop the audio clip
         sound.Pause();
     }
 }
